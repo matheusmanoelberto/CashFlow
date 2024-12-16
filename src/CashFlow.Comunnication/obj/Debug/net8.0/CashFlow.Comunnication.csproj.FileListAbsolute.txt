@@ -1,0 +1,11 @@
+C:\Users\Mathe\Documents\GitHub\ProductManager\CashFlow\src\CashFlow.Comunnication\bin\Debug\net8.0\CashFlow.Comunnication.deps.json
+C:\Users\Mathe\Documents\GitHub\ProductManager\CashFlow\src\CashFlow.Comunnication\bin\Debug\net8.0\CashFlow.Comunnication.dll
+C:\Users\Mathe\Documents\GitHub\ProductManager\CashFlow\src\CashFlow.Comunnication\bin\Debug\net8.0\CashFlow.Comunnication.pdb
+C:\Users\Mathe\Documents\GitHub\ProductManager\CashFlow\src\CashFlow.Comunnication\obj\Debug\net8.0\CashFlow.Comunnication.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mathe\Documents\GitHub\ProductManager\CashFlow\src\CashFlow.Comunnication\obj\Debug\net8.0\CashFlow.Comunnication.AssemblyInfoInputs.cache
+C:\Users\Mathe\Documents\GitHub\ProductManager\CashFlow\src\CashFlow.Comunnication\obj\Debug\net8.0\CashFlow.Comunnication.AssemblyInfo.cs
+C:\Users\Mathe\Documents\GitHub\ProductManager\CashFlow\src\CashFlow.Comunnication\obj\Debug\net8.0\CashFlow.Comunnication.csproj.CoreCompileInputs.cache
+C:\Users\Mathe\Documents\GitHub\ProductManager\CashFlow\src\CashFlow.Comunnication\obj\Debug\net8.0\CashFlow.Comunnication.dll
+C:\Users\Mathe\Documents\GitHub\ProductManager\CashFlow\src\CashFlow.Comunnication\obj\Debug\net8.0\refint\CashFlow.Comunnication.dll
+C:\Users\Mathe\Documents\GitHub\ProductManager\CashFlow\src\CashFlow.Comunnication\obj\Debug\net8.0\CashFlow.Comunnication.pdb
+C:\Users\Mathe\Documents\GitHub\ProductManager\CashFlow\src\CashFlow.Comunnication\obj\Debug\net8.0\ref\CashFlow.Comunnication.dll
