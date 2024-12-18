@@ -7,17 +7,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{91084AB1-AE7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8C3917B6-4E35-4A5E-86C1-2172B4BDF67B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashFlow.Api", "src\CashFlow.Api\CashFlow.Api.csproj", "{CA169613-CB06-4200-9E19-A6C825A69E9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CashFlow.Api", "src\CashFlow.Api\CashFlow.Api.csproj", "{CA169613-CB06-4200-9E19-A6C825A69E9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashFlow.Application.", "src\CashFlow.Application\CashFlow.Application..csproj", "{4513FBCD-22DD-47C5-90ED-666D21D332A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CashFlow.Application", "src\CashFlow.Application\CashFlow.Application.csproj", "{4513FBCD-22DD-47C5-90ED-666D21D332A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashFlow.Comunnication", "src\CashFlow.Comunnication\CashFlow.Comunnication.csproj", "{9D0F2937-4CE7-456C-9DDC-1C8466BB3502}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CashFlow.Comunnication", "src\CashFlow.Comunnication\CashFlow.Comunnication.csproj", "{9D0F2937-4CE7-456C-9DDC-1C8466BB3502}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashFlow.Domain", "src\CashFlow.Domain\CashFlow.Domain.csproj", "{EDF6F331-BD9F-49C4-9D4A-74193F64DB6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CashFlow.Domain", "src\CashFlow.Domain\CashFlow.Domain.csproj", "{EDF6F331-BD9F-49C4-9D4A-74193F64DB6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashFlow.Exception", "src\CashFlow.Exception\CashFlow.Exception.csproj", "{D0665A6F-5E1F-45E2-B9E0-FB2B73DB0488}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CashFlow.Exception", "src\CashFlow.Exception\CashFlow.Exception.csproj", "{D0665A6F-5E1F-45E2-B9E0-FB2B73DB0488}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashFlow.Infrastructure", "src\CashFlow.Unfrastructure\CashFlow.Infrastructure.csproj", "{D8603AAA-146C-42D9-9F63-CBF4CDFA6141}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CashFlow.Infrastructure", "src\CashFlow.Unfrastructure\CashFlow.Infrastructure.csproj", "{D8603AAA-146C-42D9-9F63-CBF4CDFA6141}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
