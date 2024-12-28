@@ -99,9 +99,9 @@ namespace CashFlow.Exception {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a unknown error.
         /// </summary>
-        public static string UNKOWN_ERROR {
+        public static string UNKNOWN_ERROR {
             get {
-                return ResourceManager.GetString("UNKOWN_ERROR", resourceCulture);
+                return ResourceManager.GetString("UNKNOWN_ERROR", resourceCulture);
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿using CashFlow.Comunnication.Enums;
-using CashFlow.Comunnication.Requests;
+﻿using CashFlow.Comunnication.Requests;
 using CashFlow.Comunnication.Responses;
 using CashFlow.Exception.ExceptionsBase;
 
