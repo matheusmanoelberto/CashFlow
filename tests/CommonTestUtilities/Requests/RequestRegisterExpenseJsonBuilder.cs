@@ -15,6 +15,5 @@ public class RequestRegisterExpenseJsonBuilder
             .RuleFor(r => r.Date, faker => faker.Date.Past())
             .RuleFor(r => r.PaymentType, faker => faker.PickRandom<PaymentType>())
             .RuleFor(r => r.Amount, faker => faker.Random.Decimal(min: 1, max: 1000));
-
     }
 }
