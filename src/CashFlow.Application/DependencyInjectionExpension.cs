@@ -1,5 +1,6 @@
 ﻿using CashFlow.Application.AutoMapper;
 using CashFlow.Application.UserCases.Expenses.GetAll;
+using CashFlow.Application.UserCases.Expenses.GetById;
 using CashFlow.Application.UserCases.Expenses.Register;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,5 +23,6 @@ public static class DependencyInjectionExpension
     {
         services.AddScoped<IRegisterExpenseUseCase, RegisterExpenseUseCase>();
         services.AddScoped<IGetAllExpenseUseCase, GetAllExpenseUseCase>();
+        services.AddScoped<IGetExpensesByIdUseCase, GetExpensesByIdUseCase>();
     }
 }

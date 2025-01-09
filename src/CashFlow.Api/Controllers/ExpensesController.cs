@@ -3,6 +3,7 @@ using CashFlow.Application.UserCases.Expenses.GetAll;
 using CashFlow.Comunnication.Requests;
 using CashFlow.Comunnication.Responses;
 using Microsoft.AspNetCore.Mvc;
+using CashFlow.Application.UserCases.Expenses.GetById;
 
 namespace CashFlow.Api.Controllers;
 
@@ -34,5 +35,16 @@ public class ExpensesController : ControllerBase
             return Ok(response);
 
         return NoContent();
+    }
+
+    [HttpGet]
+    [Route("{id}")]
+    [ProducesResponseType(typeof(ResponseExpenseJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseExpenseJson), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> GetById([FromServices] IGetExpensesByIdUseCase useCase, [FromRoute] long id)
+    {
+
+        var response = await useCase.Execute(id);
+        return Ok(response);
     }
 }
