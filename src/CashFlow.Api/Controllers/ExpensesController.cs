@@ -28,7 +28,8 @@ public class ExpensesController : ControllerBase
     [HttpGet]
     [ProducesResponseType(typeof(ResponseExpensesJson), StatusCodes.Status200OK)]
     [ProducesResponseType( StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> GetAllExpenses([FromServices] IGetAllExpenseUseCase useCase)
+    public async Task<IActionResult> GetAllExpenses([FromServices] IGetAllExpenseUseCase useCase,
+        [FromHeader] DateOnly teste)
     {
 
         var response = await useCase.Execute();

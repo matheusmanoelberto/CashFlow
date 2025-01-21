@@ -29,7 +29,7 @@ public static class DependencyInjectionExpension
         services.AddScoped<IGetExpensesByIdUseCase, GetExpensesByIdUseCase>();
         services.AddScoped<IDeleteExpensesUseCase, DeleteExpensesUseCase>();
         services.AddScoped<IUpdateExpensesUseCase, UpdateExpensesUseCase>();
-        services.AddScoped<IGenerateExpensesRepostExceluseCase, GenerateExpensesRepostExceluseCase>();
+        services.AddScoped<IGenerateExpensesReportExcelUseCase, GenerateExpensesReportExcelUseCase>();
 
     }
 }
