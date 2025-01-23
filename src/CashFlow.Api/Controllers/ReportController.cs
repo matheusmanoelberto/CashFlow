@@ -1,6 +1,7 @@
-using System.Net.Mime;
+
 using CashFlow.Application.UserCases.Expenses.Reports.Excel;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Mime;
 
 namespace CashFlow.Api.Controllers;
 
@@ -22,5 +23,4 @@ public class ReportController : ControllerBase
 
         return NoContent();
     }
-
 }

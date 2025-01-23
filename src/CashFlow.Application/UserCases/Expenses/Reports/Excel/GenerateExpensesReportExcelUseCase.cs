@@ -1,3 +1,4 @@
+using CashFlow.Domain.Enums;
 using CashFlow.Domain.Reports;
 using CashFlow.Domain.Repositories.Expenses;
 using ClosedXML.Excel;
@@ -5,6 +6,7 @@ using ClosedXML.Excel;
 namespace CashFlow.Application.UserCases.Expenses.Reports.Excel;
 public class GenerateExpensesReportExcelUseCase : IGenerateExpensesReportExcelUseCase
 {
+    private const string CURRENCY_SYMBOL = "Є";
     private readonly IExpensesReadOnlyRepository _repository;
     public GenerateExpensesReportExcelUseCase(IExpensesReadOnlyRepository repository)
     {
@@ -12,9 +14,14 @@ public class GenerateExpensesReportExcelUseCase : IGenerateExpensesReportExcelUs
     }
     public async Task<byte[]> Execute(DateOnly month)
     {
-        var workbook = new XLWorkbook();
+        var expenses = await _repository.FilterByMonth(month);
+        if(expenses.Count == 0) {
+            return [];
+        }
 
-        workbook.Author = "Matheus Manoel";
+        using var workbook = new XLWorkbook();
+
+        workbook.Author = "Welisson Arley";
         workbook.Style.Font.FontSize = 12;
         workbook.Style.Font.FontName = "Times New Roman";
 
@@ -22,9 +29,39 @@ public class GenerateExpensesReportExcelUseCase : IGenerateExpensesReportExcelUs
 
         InsertHeader(worksheet);
 
+        var raw = 2;
+        foreach(var expense in expenses)
+        {
+            worksheet.Cell($"A{raw}").Value = expense.Title;
+            worksheet.Cell($"B{raw}").Value = expense.Date;
+            worksheet.Cell($"C{raw}").Value = ConvertPaymenrType(expense.PaymentType);
+
+            worksheet.Cell($"D{raw}").Value = expense.Amount;
+            worksheet.Cell($"D{raw}").Style.NumberFormat.Format = $"-{CURRENCY_SYMBOL} #,##0.00";
+
+            worksheet.Cell($"E{raw}").Value = expense.Description;
+
+            raw++;
+        }
+
+        worksheet.Columns().AdjustToContents();
+
         var file = new MemoryStream();
         workbook.SaveAs(file);
+
         return file.ToArray();
+    }
+
+    private string ConvertPaymenrType(PaymentType payment)
+    {
+        return payment switch
+        {
+            PaymentType.Cash => "Dinheiro",
+            PaymentType.CreditCart => "Cartão de Crédito",
+            PaymentType.DebitCard => "Cartào de Débito",
+            PaymentType.EletronicTransfer => "Transferencia bancaria",
+            _ => string.Empty
+        };
     }
 
     private void InsertHeader(IXLWorksheet worksheet)
@@ -39,11 +76,11 @@ public class GenerateExpensesReportExcelUseCase : IGenerateExpensesReportExcelUs
 
         worksheet.Cells("A1:E1").Style.Fill.BackgroundColor = XLColor.FromHtml("#F5C2B6");
 
-        worksheet.Cells("A1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
-        worksheet.Cells("B1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
-        worksheet.Cells("C1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
-        worksheet.Cells("D1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Right);
-        worksheet.Cells("E1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+        worksheet.Cell("A1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+        worksheet.Cell("B1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+        worksheet.Cell("C1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+        worksheet.Cell("E1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+        worksheet.Cell("D1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Right);
     }
 
 }
