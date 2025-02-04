@@ -27,7 +27,15 @@ public class GenerateExpensesReportPdfUseCase : IGenerateExpensesReportPdfUseCas
         var document = CreateDocument(month);
         var page = CreatePage(document);
 
+        var paragrapf = page.AddParagraph();
+        var ttle = string.Format(ResourceReportGenerationMessages.TOTAL_SPENT_IN, month.ToString("Y"));
 
+        paragrapf.AddFormattedText(ttle, new Font { Name = FontHelper.RALEWAY_REGULAR, Size = 15});
+
+        paragrapf.AddLineBreak();
+
+        var totalExpenses = expenses.Sum(expense => expense.Amount);
+        paragrapf.AddFormattedText($"{totalExpenses} {CURRENCY_SYMBOL}", new Font { Name = FontHelper.WORKSSANS_BLACK, Size = 50 });
 
         return [];
     }
