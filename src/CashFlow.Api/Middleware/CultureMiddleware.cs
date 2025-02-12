@@ -5,22 +5,24 @@ namespace CashFlow.Api.Middleware;
 public class CultureMiddleware
 {
     private readonly RequestDelegate _next;
+
     public CultureMiddleware(RequestDelegate next)
     {
         _next = next;
     }
+
     public async Task Invoke(HttpContext context)
     {
-       var supportedLanguages = CultureInfo.GetCultures(CultureTypes.AllCultures).ToList();
+        var supportedLanguages = CultureInfo.GetCultures(CultureTypes.AllCultures).ToList();
 
-       var requestedCuture = context.Request.Headers.AcceptLanguage.FirstOrDefault();
+        var requestedCulture = context.Request.Headers.AcceptLanguage.FirstOrDefault();
 
         var cultureInfo = new CultureInfo("en");
 
-        if(string.IsNullOrWhiteSpace(requestedCuture) == false 
-            && supportedLanguages.Exists(language => language.Equals(requestedCuture))) 
-        { 
-            cultureInfo = new CultureInfo(requestedCuture);
+        if (string.IsNullOrWhiteSpace(requestedCulture) == false
+            && supportedLanguages.Exists(language => language.Name.Equals(requestedCulture)))
+        {
+            cultureInfo = new CultureInfo(requestedCulture);
         }
 
         CultureInfo.CurrentCulture = cultureInfo;
