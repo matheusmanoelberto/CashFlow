@@ -13,25 +13,25 @@ internal class ExpensesRepository : IExpensesReadOnlyRepository, IExpensesWriteO
     }
     public async Task Add(Expense expense)
     {
-       await _dbContext.Expenses.AddAsync(expense);
+        await _dbContext.Expenses.AddAsync(expense);
     }
 
     public async Task<bool> Delete(long id)
     {
-       var result = await _dbContext.Expenses.FirstOrDefaultAsync(expense => expense.Id == id);
-       if(result is null)
+        var result = await _dbContext.Expenses.FirstOrDefaultAsync(expense => expense.Id == id);
+        if (result is null)
         {
             return false;
         }
 
-       _dbContext.Expenses.Remove(result);
+        _dbContext.Expenses.Remove(result);
 
         return true;
     }
 
     public async Task<List<Expense>> GetAll()
     {
-         return await _dbContext.Expenses.AsNoTracking().ToListAsync();
+        return await _dbContext.Expenses.AsNoTracking().ToListAsync();
     }
 
     async Task<Expense?> IExpensesReadOnlyRepository.GetById(long id)
@@ -46,7 +46,7 @@ internal class ExpensesRepository : IExpensesReadOnlyRepository, IExpensesWriteO
 
     public void Update(Expense expense)
     {
-       _dbContext.Expenses.Update(expense);
+        _dbContext.Expenses.Update(expense);
     }
 
     public async Task<List<Expense>> FilterByMonth(DateOnly date)

@@ -33,7 +33,7 @@ public static class DependencyInjectionExpension
         services.AddScoped<IUpdateExpensesUseCase, UpdateExpensesUseCase>();
         services.AddScoped<IGenerateExpensesReportExcelUseCase, GenerateExpensesReportExcelUseCase>();
         services.AddScoped<IGenerateExpensesReportPdfUseCase, GenerateExpensesReportPdfUseCase>();
-        services.AddKeyedScoped<IRegisterUserUseCase>, RegisterUserUseCase();
+        services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
 
     }
 }

@@ -2,7 +2,7 @@ using CashFlow.Infrastructure.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CashFlow.Unfrastructure.Migrations;
+namespace CashFlow.Infrastructure.Migrations;
 
 public class DataBaseMigrations
 {
