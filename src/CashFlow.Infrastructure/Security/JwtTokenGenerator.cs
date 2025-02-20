@@ -4,9 +4,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-;
 
-namespace CashFlow.Infrastructure.Secuity;
+namespace CashFlow.Infrastructure.Security;
 internal class JwtTokenGenerator : IAccessTokenGenerator
 {
     private readonly uint _expirationTimeMinutes;
@@ -28,7 +27,7 @@ internal class JwtTokenGenerator : IAccessTokenGenerator
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Expires = DateTime.UtcNow.AddMinutes(_expirationTimeMinutes),
-            SigningCredentials = new SigningCredentials(SecurityKey(), SecurityAlgorithms.HmacSha256)
+            SigningCredentials = new SigningCredentials(SecurityKey(), SecurityAlgorithms.HmacSha256),
             Subject = new ClaimsIdentity(claims)
         };
 

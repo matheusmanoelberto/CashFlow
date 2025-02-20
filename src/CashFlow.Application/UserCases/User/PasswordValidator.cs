@@ -5,53 +5,63 @@ using System.Text.RegularExpressions;
 
 namespace CashFlow.Application.UserCases.User;
 
-public class PasswordValidator<T> : PropertyValidator<T, string>
+public partial class PasswordValidator<T> : PropertyValidator<T, string>
 {
-    private const string ERRO_MESSAGE_KEY = "ErroMessage";
+    private const string ERROR_MESSAGE_KEY = "ErroMessage";
     public override string Name => "PassworValidator";
 
     protected override string GetDefaultMessageTemplate(string errorCode)
     {
-        return $"{{{ERRO_MESSAGE_KEY}}}";
+        return $"{{{ERROR_MESSAGE_KEY}}}";
     }
 
     public override bool IsValid(ValidationContext<T> context, string password)
     {
-        if(string.IsNullOrWhiteSpace(password) )
+        if (string.IsNullOrWhiteSpace(password))
         {
-            context.MessageFormatter.AppendArgument(ERRO_MESSAGE_KEY, ResourceErrorMessages.INVALID_PASSWORD);
+            context.MessageFormatter.AppendArgument(ERROR_MESSAGE_KEY, ResourceErrorMessages.INVALID_PASSWORD);
             return false;
         }
 
-        if(password.Length > 8) {
-            context.MessageFormatter.AppendArgument(ERRO_MESSAGE_KEY, ResourceErrorMessages.INVALID_PASSWORD);
+        if (password.Length < 8)
+        {
+            context.MessageFormatter.AppendArgument(ERROR_MESSAGE_KEY, ResourceErrorMessages.INVALID_PASSWORD);
             return false;
         }
 
-        if(Regex.IsMatch(password, @"[A-Z]+"))
+        if (UpperCaseLetter().IsMatch(password) == false)
         {
-            context.MessageFormatter.AppendArgument(ERRO_MESSAGE_KEY, ResourceErrorMessages.INVALID_PASSWORD);
+            context.MessageFormatter.AppendArgument(ERROR_MESSAGE_KEY, ResourceErrorMessages.INVALID_PASSWORD);
             return false;
         }
 
-        if (Regex.IsMatch(password, @"[a-z]+"))
+        if (LowerCaseLetter().IsMatch(password) == false)
         {
-            context.MessageFormatter.AppendArgument(ERRO_MESSAGE_KEY, ResourceErrorMessages.INVALID_PASSWORD);
+            context.MessageFormatter.AppendArgument(ERROR_MESSAGE_KEY, ResourceErrorMessages.INVALID_PASSWORD);
             return false;
         }
 
-        if (Regex.IsMatch(password, @"[0-9]+"))
+        if (Numbers().IsMatch(password) == false)
         {
-            context.MessageFormatter.AppendArgument(ERRO_MESSAGE_KEY, ResourceErrorMessages.INVALID_PASSWORD);
+            context.MessageFormatter.AppendArgument(ERROR_MESSAGE_KEY, ResourceErrorMessages.INVALID_PASSWORD);
             return false;
         }
 
-        if (Regex.IsMatch(password, @"[\!|?\*\@]+"))
+        if (SpecialSymbols().IsMatch(password) == false)
         {
-            context.MessageFormatter.AppendArgument(ERRO_MESSAGE_KEY, ResourceErrorMessages.INVALID_PASSWORD);
+            context.MessageFormatter.AppendArgument(ERROR_MESSAGE_KEY, ResourceErrorMessages.INVALID_PASSWORD);
             return false;
         }
 
         return true;
     }
+
+    [GeneratedRegex(@"[A-Z]+")]
+    private static partial Regex UpperCaseLetter();
+    [GeneratedRegex(@"[a-z]+")]
+    private static partial Regex LowerCaseLetter();
+    [GeneratedRegex(@"[0-9]+")]
+    private static partial Regex Numbers();
+    [GeneratedRegex(@"[\!\?\*\.]+")]
+    private static partial Regex SpecialSymbols();
 }

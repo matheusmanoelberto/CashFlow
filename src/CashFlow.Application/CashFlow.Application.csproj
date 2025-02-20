@@ -8,6 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="UserCases\Expenses\NovaPasta\**" />
+    <Compile Remove="UserCases\NovaPasta\**" />
+    <EmbeddedResource Remove="UserCases\Expenses\NovaPasta\**" />
+    <EmbeddedResource Remove="UserCases\NovaPasta\**" />
+    <None Remove="UserCases\Expenses\NovaPasta\**" />
+    <None Remove="UserCases\NovaPasta\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="UserCases\Expenses\Reports\Pdf\Fonts\Raleway-Black.ttf" />
     <None Remove="UserCases\Expenses\Reports\Pdf\Fonts\Raleway-Regular.ttf" />
     <None Remove="UserCases\Expenses\Reports\Pdf\Fonts\WorkSans-Black.ttf" />
