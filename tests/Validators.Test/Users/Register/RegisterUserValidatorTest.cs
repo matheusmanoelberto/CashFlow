@@ -2,13 +2,14 @@ using CashFlow.Application.UserCases.User.Register;
 using CashFlow.Exception;
 using CommonTestUtilities.Requests;
 using FluentAssertions;
+using System.Reflection;
 
 namespace Validators.Test.Users.Register;
 public class RegisterUserValidatorTest
 {
     [Fact]
     public void Success()
-    {
+    {     
         //Arrange
         var validator = new RegisterUserValidator();
         var request = RequestRegisterUserJsonBuilder.Build();
