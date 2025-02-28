@@ -1,5 +1,8 @@
 using CashFlow.Application.UserCases.Login.DoLogin;
+using CashFlow.Exception;
+using CashFlow.Exception.ExceptionsBase;
 using CommonTestUtilities.Cryptography;
+using CommonTestUtilities.Entities;
 using CommonTestUtilities.Repositories;
 using CommonTestUtilities.Requests;
 using CommonTestUtilities.Token;
@@ -11,25 +14,57 @@ public class DoLoginUseCaseTest
     [Fact]
     public async Task Success() 
     {
+        var user = UserBuilder.Build();
+
         var request = RequestLoginJsonBuild.Build();
-        var useCase = CreateUseCase();
+        request.Email = user.Email;
+
+        var useCase = CreateUseCase(user, request.Password);
 
         var result = await useCase.Execute(request);
 
         result.Should().NotBeNull();
+        result.Name.Should().Be(user.Name);
         result.Token.Should().NotBeNullOrWhiteSpace();
     }
 
     [Fact]
-    public async Task Error_User_Not_Found() { }
+    public async Task Error_User_Not_Found() 
+    {
+        var user = UserBuilder.Build();
+
+        var request = RequestLoginJsonBuild.Build();
+
+        var useCase = CreateUseCase(user);
+
+        var act = async () => await useCase.Execute(request);
+
+        var result = await act.Should().ThrowAsync<InvalidLoginException>();
+
+        result.Where(ex => ex.GetErrors().Count == 1 && ex.GetErrors().Contains(ResourceErrorMessages.EMAIL_OR_PASSOWRD_INVALID));
+    }
 
 
     [Fact]
-    public async Task Error_Password_Not_Match() { }
-
-    private DoLoginUseCase CreateUseCase(CashFlow.Domain.Entities.User user)
+    public async Task Error_Password_Not_Match() 
     {
-        var passwordEncripter = PasswordEncripterBuilder.Build();
+        var user = UserBuilder.Build();
+
+        var request = RequestLoginJsonBuild.Build();
+        request.Email = user.Email;
+
+        var useCase = CreateUseCase(user);
+
+        var act = async () => await useCase.Execute(request);
+
+        var result = await act.Should().ThrowAsync<InvalidLoginException>();
+
+        result.Where(ex => ex.GetErrors().Count == 1 && ex.GetErrors().Contains(ResourceErrorMessages.EMAIL_OR_PASSOWRD_INVALID));
+    }
+
+    private DoLoginUseCase CreateUseCase(CashFlow.Domain.Entities.User user, string? password = null)
+    {
+        var passwordEncripter = new PasswordEncrypterBuilder().Verify(password).Build();
         var tokenGenerator = JwtTokenGeneratorBuilder.Build();
         var readRepository = new UserReadOnlyRepositoryBuilder().GetUserByEmail(user).Build();
 
